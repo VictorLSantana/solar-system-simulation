@@ -59,5 +59,8 @@ class Sol(CorpoCeleste):
 
 
 class Planeta(CorpoCeleste):
-    pass
+    cores = itertools.cycle(["red", "green", "blue"])
+    def __init__(self, sistema_solar, massa, tamanho, posicao=(0, 0), velocidade=(0, 0)):
+        super().__init__(sistema_solar, massa, tamanho, posicao, velocidade)
+        self.color(next(Planeta.cores))
 
