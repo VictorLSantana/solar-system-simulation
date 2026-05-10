@@ -2,6 +2,9 @@
 import math
 import turtle
 
+DISPLAY_SIZE = 20
+
+
 class SolarSystem:
     def __init__(self, width, height):
         self.solar_system = turtle.Screen() 
@@ -18,19 +21,13 @@ class SolarSystem:
         self.bodies.remove(body) 
 
 class SolarSystemBody(turtle.Turtle):
-    min_display_size = 20
-    display_log_base = 1.1
     
-    
-    def __init__(self, solar_system, mass, position=(0, 0), velocity=(0, 0)):
+    def __init__(self, solar_system, mass, display_size, position=(0, 0), velocity=(0, 0)):
         super().__init__()
-        self.mass = mass,
+        self.mass = mass
         self.setposition(position)
         self.velocity = velocity
-        self.display_size = max(
-            math.log(self.mass, self.display_log_base),
-            self.min_display_size
-        )
+        self.display_size = display_size
         
         self.penup()
         self.hideturtle()
@@ -42,7 +39,13 @@ class SolarSystemBody(turtle.Turtle):
         
 
 class Sun(SolarSystemBody):
-    pass
+    def __init__(self, solar_system, mass, display_size, position=(0, 0), velocity=(0, 0)):
+        super().__init__(solar_system, mass, display_size, position, velocity)
+        self.color("yellow")
+
+
+
+
 
 class Planet(SolarSystemBody):
     pass
